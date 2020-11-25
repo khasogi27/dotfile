@@ -7,7 +7,6 @@ Plug 'maxmellon/vim-jsx-pretty'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'docunext/closetag.vim'
 Plug 'leafgarland/typescript-vim'
-Plug 'maxmellon/vim-jsx-pretty'
 Plug 'townk/vim-autoclose'
 Plug 'alvan/vim-closetag'
 Plug 'chiel92/vim-autoformat'
@@ -21,7 +20,7 @@ Plug 'sheerun/vim-polyglot'
 " post install (yarn install | npm install) then load plugin only for editing supported files
 " st install (yarn install | npm install) then load plugin only for editing
 " supported files
-Plug 'prettier/vim-prettier', { 'do': 'yarn install'  }
+Plug 'prettier/vim-prettier', { 'do': 'npm install', 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'markdown', 'vue', 'jsx', 'html']  }
 " add this line to your .vimrc file
 Plug 'mattn/emmet-vim'
 Plug 'JamshedVesuna/vim-markdown-preview'
@@ -46,9 +45,21 @@ autocmd BufReadPre *.js let b:javascript_lib_use_angularjs = 0
 let g:NERDTreeHighlightFolders = 1 " enables folder icon highlighting using exact match
 let g:NERDTreeHighlightFoldersFullName = 1 " highlights the folder name
 let g:NERDTreeLimitedSyntax = 1
+let g:NERDSpaceDelims = 1
+let g:NERDTreeShowHidden = 1
+let g:NERDTreeIgnore = ['node_modules', '^\.git$', '*.sw?', '.cache',  '^build$', '.expo-shared', '.nyc_output']
+" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
 let g:split_term_default_shell = "zsh"
 set splitright
 set splitbelow
+
+let g:prettier#autoformat = 0
+let g:prettier#quickfix_auto_focus = 0
+let g:prettier#config#bracket_spacing = 'true'
+let g:prettier#config#semi = 'true'
+" " autocmd BufWritePre *.js,*.ts,*.css,*.less,*.scss,*.json,*.md,*.html,*.jsx
+" Prettier"
 
 let g:polyglot_disabled = ['markdown']
 let g:polyglot_disabled = ['markdown.plugin']
@@ -134,10 +145,6 @@ let g:closetag_shortcut = '>'
 " Add > at current position without closing the current tag, default is ''
 "
 let g:closetag_close_shortcut = '<leader>>'
-
-
-
-
 
 set rtp+=/usr/local/opt/fzf
 set splitbelow
