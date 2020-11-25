@@ -1,5 +1,6 @@
 call plug#begin('~/.vim/plugged')
 Plug 'vim-airline/vim-airline'
+Plug 'ryanoasis/vim-devicons'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vimlab/split-term.vim'
 Plug 'yuezk/vim-js'
@@ -17,6 +18,9 @@ Plug 'neoclide/coc-snippets'
 Plug 'romkatv/powerlevel10k'
 Plug 'jiangmiao/auto-pairs'
 Plug 'sheerun/vim-polyglot'
+Plug 'yggdroot/indentline'
+" Plug 'preservim/nerdtree'
+" Plug 'Xuyuanp/nerdtree-git-plugin'
 " post install (yarn install | npm install) then load plugin only for editing supported files
 " st install (yarn install | npm install) then load plugin only for editing
 " supported files
@@ -26,10 +30,49 @@ Plug 'mattn/emmet-vim'
 Plug 'JamshedVesuna/vim-markdown-preview'
 call plug#end()
 
+" Indentline
+let g:indentLine_setColors = 0
+let g:indentLine_defaultGroup = 'SpecialKey'
+let g:indentLine_char = '│' 
+
+" nerdtree-git-plugin
+" Usee this variable to change symbols.
+
+let g:NERDTreeGitStatusIndicatorMapCustom = {
+                \ 'Modified'  :'✹',
+                \ 'Staged'    :'✚',
+                \ 'Untracked' :'✭',
+                \ 'Renamed'   :'➜',
+                \ 'Unmerged'  :'═',
+                \ 'Deleted'   :'✖',
+                \ 'Dirty'     :'✗',
+                \ 'Ignored'   :'☒',
+                \ 'Clean'     :'✔︎',
+                \ 'Unknown'   :'?',
+                \ }
+" There is a predefined map used nerdfonts, to enable it
+let g:NERDTreeGitStatusUseNerdFonts = 1 " you should install nerdfonts by yourself. default: 0
+
+" How to show ignored status?
+" let g:NERDTreeGitStatusShowIgnored = 1 " a heavy feature may cost much more time. default: 0
+
+" How to indicate every single untracked file under an untracked dir?
+" let g:NERDTreeGitStatusUntrackedFilesMode = 'all' " a heave feature too. default: normal
+
+" How to show Clean indicator?
+let g:NERDTreeGitStatusShowClean = 1 " default: 0
+
+" How to hide the boring brackets([ ])?
+let g:NERDTreeGitStatusConcealBrackets = 1 " default: 0
+
+
+" Markdown
 let vim_markdown_preview_github=1
 let g:used_javascript_libs = 'underscore,backbone'
 let g:airline_powerline_fonts = 1
 let mapleader = ","
+
+" Nerdtree
 nmap <leader>ne :NERDTree<cr>
 let g:NERDTreeShowHidden = 1
 let g:NERDTreeDirArrowExpandable = '▸'
@@ -45,9 +88,9 @@ autocmd BufReadPre *.js let b:javascript_lib_use_angularjs = 0
 let g:NERDTreeHighlightFolders = 1 " enables folder icon highlighting using exact match
 let g:NERDTreeHighlightFoldersFullName = 1 " highlights the folder name
 let g:NERDTreeLimitedSyntax = 1
-let g:NERDSpaceDelims = 1
-let g:NERDTreeShowHidden = 1
-let g:NERDTreeIgnore = ['node_modules', '^\.git$', '*.sw?', '.cache',  '^build$', '.expo-shared', '.nyc_output']
+" let g:NERDSpaceDelims = 1
+" let g:NERDTreeShowHidden = 1
+" let g:NERDTreeIgnore = ['node_modules', '^\.git$', '*.sw?', '.cache',  '^build$', '.expo-shared', '.nyc_output']
 " autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 let g:split_term_default_shell = "zsh"
@@ -339,3 +382,5 @@ imap <C-j> <Plug>(coc-snippets-expand-jump)
 " Use <leader>x for convert visual selected code to snippet
 xmap <leader>x  <Plug>(coc-convert-snippet)
 
+" Vim-dev-icon
+set encoding=UTF-8
