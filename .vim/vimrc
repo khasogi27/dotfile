@@ -1,6 +1,6 @@
 call plug#begin('~/.vim/plugged')
 Plug 'vim-airline/vim-airline'
-Plug 'ryanoasis/vim-devicons'
+" Plug 'ryanoasis/vim-devicons'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vimlab/split-term.vim'
 Plug 'yuezk/vim-js'
@@ -17,9 +17,9 @@ Plug 'shougo/neocomplcache.vim'
 Plug 'neoclide/coc-snippets'
 Plug 'romkatv/powerlevel10k'
 Plug 'jiangmiao/auto-pairs'
-Plug 'sheerun/vim-polyglot'
-Plug 'yggdroot/indentline'
-" Plug 'preservim/nerdtree'
+" Plug 'sheerun/vim-polyglot'
+" Plug 'yggdroot/indentline'
+Plug 'preservim/nerdtree'
 " Plug 'Xuyuanp/nerdtree-git-plugin'
 " post install (yarn install | npm install) then load plugin only for editing supported files
 " st install (yarn install | npm install) then load plugin only for editing
@@ -27,14 +27,17 @@ Plug 'yggdroot/indentline'
 Plug 'prettier/vim-prettier', { 'do': 'npm install', 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'markdown', 'vue', 'jsx', 'html']  }
 " add this line to your .vimrc file
 Plug 'mattn/emmet-vim'
-Plug 'JamshedVesuna/vim-markdown-preview'
+" Plug 'JamshedVesuna/vim-markdown-preview'
+Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 call plug#end()
 
-" Indentline
-let g:indentLine_setColors = 0
-let g:indentLine_defaultGroup = 'SpecialKey'
-let g:indentLine_char = '│' 
+" ===== Indentline =====
+" let g:indentLine_setColors = 0
+" let g:indentLine_defaultGroup = 'SpecialKey'
+" let g:indentLine_char = '│' 
 
+" ===== Nerdtree =====
 " nerdtree-git-plugin
 " Usee this variable to change symbols.
 
@@ -54,10 +57,10 @@ let g:NERDTreeGitStatusIndicatorMapCustom = {
 let g:NERDTreeGitStatusUseNerdFonts = 1 " you should install nerdfonts by yourself. default: 0
 
 " How to show ignored status?
-" let g:NERDTreeGitStatusShowIgnored = 1 " a heavy feature may cost much more time. default: 0
+let g:NERDTreeGitStatusShowIgnored = 1 " a heavy feature may cost much more time. default: 0
 
 " How to indicate every single untracked file under an untracked dir?
-" let g:NERDTreeGitStatusUntrackedFilesMode = 'all' " a heave feature too. default: normal
+let g:NERDTreeGitStatusUntrackedFilesMode = 'all' " a heave feature too. default: normal
 
 " How to show Clean indicator?
 let g:NERDTreeGitStatusShowClean = 1 " default: 0
@@ -65,14 +68,26 @@ let g:NERDTreeGitStatusShowClean = 1 " default: 0
 " How to hide the boring brackets([ ])?
 let g:NERDTreeGitStatusConcealBrackets = 1 " default: 0
 
+let g:webdevicons_enable_nerdtree_brackets = 1
 
-" Markdown
+" let g:NERDTreeGlyphReadOnly = "RO"
+
+" ===== Devicon =====
+
+let g:webdevicons_conceal_nerdtree_brackets=0
+
+" after a re-source, fix syntax matching issues (concealing brackets):
+" if exists('g:loaded_webdevicons')
+"     call webdevicons#refresh()
+" endif
+
+" ===== Markdown =====
 let vim_markdown_preview_github=1
 let g:used_javascript_libs = 'underscore,backbone'
 let g:airline_powerline_fonts = 1
 let mapleader = ","
 
-" Nerdtree
+" ===== Nerdtree =====
 nmap <leader>ne :NERDTree<cr>
 let g:NERDTreeShowHidden = 1
 let g:NERDTreeDirArrowExpandable = '▸'
@@ -97,16 +112,16 @@ let g:split_term_default_shell = "zsh"
 set splitright
 set splitbelow
 
-let g:prettier#autoformat = 0
-let g:prettier#quickfix_auto_focus = 0
+let g:prettier#autoformat = 1
+let g:prettier#quickfix_auto_focus = 1
 let g:prettier#config#bracket_spacing = 'true'
 let g:prettier#config#semi = 'true'
 " " autocmd BufWritePre *.js,*.ts,*.css,*.less,*.scss,*.json,*.md,*.html,*.jsx
 " Prettier"
 
-let g:polyglot_disabled = ['markdown']
-let g:polyglot_disabled = ['markdown.plugin']
-let g:polyglot_disabled = ['autoindent']
+" let g:polyglot_disabled = ['markdown']
+" let g:polyglot_disabled = ['markdown.plugin']
+" let g:polyglot_disabled = ['autoindent']
 
 let g:javascript_plugin_jsdoc = 1
 let g:javascript_plugin_ngdoc = 1
@@ -203,8 +218,9 @@ set undodir=.undo/,~/.undo/,/tmp//
 set tabstop=2 shiftwidth=2 expandtab
 
 colorscheme onedark
-syntax on
+syntax on 
 set number
+set re=0
 highlight Normal ctermbg=None
 highlight LineNr ctermfg=DarkGrey
 
